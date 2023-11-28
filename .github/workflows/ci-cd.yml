@@ -42,13 +42,13 @@ jobs:
           cd dev
           yarn test
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          directory: coverage
-          file: coverage/lcov.info
-          fail_ci_if_error: true # optional, default: false
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+      #     directory: coverage
+      #     file: coverage/lcov.info
+      #     fail_ci_if_error: true # optional, default: false
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@master
@@ -58,10 +58,10 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Build
-        run: |
-          cd dev
-          yarn build
+      # - name: Build
+      #   run: |
+      #     cd dev
+      #     yarn build
 
       # - name: Semantic Release
       #   run: |
