@@ -1,0 +1,80 @@
+name: TypeScript CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "dev/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "dev/**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: |
+          cd dev
+          yarn install
+
+      # - name: Run lint
+      #   run: |
+      #     cd dev
+      #     yarn lint
+
+      - name: Run unit tests
+        run: |
+          cd dev
+          yarn test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          directory: coverage
+          file: coverage/lcov.info
+          fail_ci_if_error: true # optional, default: false
+
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   with:
+      #     projectBaseDir: dev
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Build
+        run: |
+          cd dev
+          yarn build
+
+      # - name: Semantic Release
+      #   run: |
+      #     cd dev
+      #     yarn semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # - name: Publish to NPM
+      #   if: startsWith(github.ref, 'refs/tags/v')
+      #   run: |
+      #     cd dist
+      #     yarn publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
