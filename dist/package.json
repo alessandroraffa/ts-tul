@@ -1,0 +1,16 @@
+{
+  "name": "@alessandroraffa/ts-tul",
+  "version": "v0.1.0-alpha",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
+  "type": "module",
+  "main": "dist/bundles/cjs.js",
+  "module": "dist/bundles/esm.js",
+  "browser": "dist/bundles/umd.js",
+  "bin": {
+    "tul": "dist/bin/index.js"
+  },
+  "types": "types/index.d.ts"
+}
