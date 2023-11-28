@@ -1,6 +1,6 @@
 export const passwordLength = 8;
 export const passwordCharset =
-  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=\\';
+  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~|}{[]:;?><,.-=';
 export const generatePassword = (length?: number): string => {
   const actualLength = length || passwordLength;
   if (actualLength < passwordLength) {
