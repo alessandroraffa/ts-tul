@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - "dev/**"
+      - 'dev/**'
   pull_request:
     branches:
       - main
     paths:
-      - "dev/**"
+      - 'dev/**'
 
 jobs:
   test:
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: |

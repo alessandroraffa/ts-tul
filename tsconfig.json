@@ -1,13 +1,13 @@
 {
-  "include": ["./**/*.ts"],
+  "include": ["./src/**/*.ts", "./src/*.ts"],
   "compilerOptions": {
     // "rootDir": "./src",
-    "outDir": "../dist",
+    "outDir": "./dist",
     "module": "ESNext",
     "lib": ["ESNext"],
     "target": "ES5",
     "declaration": true,
-    "declarationDir": "../dist/types",
+    "declarationDir": "./dist/types",
     "esModuleInterop": true,
     "preserveSymlinks": true,
     "allowJs": true,
@@ -21,5 +21,5 @@
     "strict": true,
     "downlevelIteration": true
   },
-  "exclude": ["../coverage", "node_modules", "../dist", ".eslintrc.js"]
+  "exclude": ["coverage", "node_modules", "dist", ".eslintrc.js"]
 }
